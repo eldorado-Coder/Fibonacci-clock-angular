@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
-    "watch": "http-server dist/",
+    "build": "ng build",
+    "watch": " ng build && http-server dist/",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand",
