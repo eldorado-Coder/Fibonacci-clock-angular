@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import colors from '../constants/colors';
-import { Box } from '../models/box.model';
-import { TimeService } from '../services/time.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import colors from '../../constants/colors';
+import { Box } from '../../models/box.model';
+import { TimeService } from '../../services/time.service';
 
 @Component({
   selector: 'app-clock',
@@ -9,7 +9,7 @@ import { TimeService } from '../services/time.service';
   styleUrls: ['./clock.component.scss'],
   
 })
-export class ClockComponent implements OnInit {
+export class ClockComponent implements OnInit, OnDestroy {
   title = 'fibonacci-angular-test';
   colors = colors.default;
   boxes:Box[] = [];
@@ -35,6 +35,10 @@ export class ClockComponent implements OnInit {
     } else if (represents.length === 2) {
       return 3;
     } else return 0;
+  }
+
+  ngOnDestroy(): void {
+    this.timeService.boxes.unsubscribe();
   }
 
 }
