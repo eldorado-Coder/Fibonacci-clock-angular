@@ -16,12 +16,15 @@ export class TimeService {
   boxes = new BehaviorSubject(boxes);
   currentTime = new currentTime();
 
-  constructor() { }
+  constructor() { 
+    this.getCurrentTime();
+  }
 
-  updateTime(hours = this.initialHours, minutes = this.initialMinutes, seconds = this.initialSeconds) {
+  public updateTime(hours = this.initialHours, minutes = this.initialMinutes, seconds = this.initialSeconds) {
     const newCurrentTime = this.formatTime(hours, minutes, seconds)
     this.boxes.next(this.updateBoxes(this.boxes.getValue(), newCurrentTime.hours, newCurrentTime.minutes));
     this.currentTime = newCurrentTime;
+    return newCurrentTime;
   }
 
    
@@ -78,13 +81,24 @@ export class TimeService {
 
   
  formatHours (hours: number) {
-  if (hours === 0) {
-    return 12
-  } else if (hours > 12) {
-    return hours - 12
-  } else {
-    return hours
+    if (hours === 0) {
+      return 12
+    } else if (hours > 12) {
+      return hours - 12
+    } else {
+      return hours
+    }
   }
-}
 
+  storeCurrentTime() {
+    localStorage.setItem('hours', this.currentTime.hours.toString());
+    localStorage.setItem('minutes', this.currentTime.minutes.toString());
+  } 
+
+  getCurrentTime() {
+    this.currentTime = {
+      hours: Number(localStorage.getItem('hours'))?? new Date().getHours(),
+      minutes: Number(localStorage.getItem('minutes'))?? new Date().getMinutes()
+    }
+  }
 }

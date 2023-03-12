@@ -18,8 +18,8 @@ export class ClockComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const now = new Date()
-    const hours = now.getHours()
-    const minutes = now.getMinutes()
+    const hours = Number(localStorage.getItem('hours'))?? now.getHours()
+    const minutes = Number(localStorage.getItem('minutes'))?? now.getMinutes()
     const seconds = now.getSeconds()
 
     this.timeService.updateTime(hours, minutes, seconds)

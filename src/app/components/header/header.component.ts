@@ -21,10 +21,24 @@ export class HeaderComponent implements OnInit {
   }
 
   onPrevious() {
-
+    let now = new Date()
+    now.setHours(this.timeService.currentTime.hours);
+    now.setMinutes(this.timeService.currentTime.minutes - 5);
+    this.timeService.currentTime = {
+      hours: now.getHours(),
+      minutes: now.getMinutes()
+    }
+    this.timeService.storeCurrentTime();
   }
   
   onNext() {
-
+    let now = new Date()
+    now.setHours(this.timeService.currentTime.hours);
+    now.setMinutes(this.timeService.currentTime.minutes + 5);
+    this.timeService.currentTime = {
+      hours: now.getHours(),
+      minutes: now.getMinutes()
+    }
+    this.timeService.storeCurrentTime();
   }
 }

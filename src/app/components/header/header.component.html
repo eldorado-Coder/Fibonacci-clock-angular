@@ -1,12 +1,12 @@
 <header class="">
     <form [formGroup]="currentTimeForm" >
         <label for="hours">
-            Hours
+            Hours:
         </label>
         <input id="hours" type="text" formControlName="hours" (ngModelChange)="timeService.updateTime(timeService.currentTime.hours, timeService.currentTime.minutes)" [(ngModel)]="timeService.currentTime.hours">
         
         <label for="minutes">
-            Minutes
+            Minutes:
         </label>
         <input id="minutes" type="text" formControlName="minutes"  (ngModelChange)="timeService.updateTime(timeService.currentTime.hours, timeService.currentTime.minutes)"  [(ngModel)]="timeService.currentTime.minutes">
     </form>
