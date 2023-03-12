@@ -1,0 +1,12 @@
+
+<div class="clock">
+    <div *ngFor="let box of boxes">
+        <div [ngClass]="box.name" class="box"
+        [ngStyle]="{color: getColorIndex(box.represents) ? colors[0] : '#000'}"
+        [style.backgroundColor]="colors[getColorIndex(box.represents)]">
+        <div class="box-size">
+            {{box.size}}
+        </div>
+    </div>
+    </div>
+  </div>

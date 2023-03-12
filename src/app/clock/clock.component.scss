@@ -1,0 +1,92 @@
+@import '../app.component.scss';  
+//////////////////////////////
+// Clock
+//////////////////////////////
+
+.clock {
+    background: rgba(black, .3);
+    position: relative;
+    padding-bottom: (5 / 8) * 100%;
+    margin-bottom: bs(4);
+//////////////////////////////
+// Boxes
+//////////////////////////////
+
+    .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        outline: 3px solid $c-black;
+        transition: background-color .5s ease,
+                    color .5s ease;
+        position: absolute;
+    
+        &-1a,
+        &-1b {
+        width: byW();
+        height: byH();
+        font-size: 20px;
+    
+        @include bp(bravo) {
+            font-size: 40px;
+        }
+        }
+    
+        &-1a {
+        top: 0;
+        left: byW(2);
+        }
+    
+        &-1b {
+        top: byH();
+        left: byW(2);
+        }
+    
+        &-2 {
+        width: byW(2);
+        height: byH(2);
+        font-size: 40px;
+        top: 0;
+        left: 0;
+    
+        @include bp(bravo) {
+            font-size: 80px;
+        }
+        }
+    
+        &-3 {
+        width: byW(3);
+        height: byH(3);
+        font-size: 80px;
+        bottom: 0;
+        left: 0;
+    
+        @include bp(bravo) {
+            font-size: 160px;
+        }
+        }
+    
+        &-5 {
+        width: byW(5);
+        height: 100%;
+        font-size: 140px;
+        top: 0;
+        right: 0;
+    
+        @include bp(bravo) {
+            font-size: 280px;
+        }
+        }
+    
+        &-size {
+        opacity: 1;
+        transition: opacity .5s ease;
+    
+        .clock.numbers-are-visible & {
+            opacity: .85;
+        }
+        }
+    }
+}
+  
+  

@@ -1,0 +1,11 @@
+//////////////////////////////
+// Typography
+//////////////////////////////
+
+@include body;
+@include headings;
+@include content;
+
+p {
+  max-width: 32em;
+}

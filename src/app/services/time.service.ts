@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import boxCombos from '../constants/boxCombos';
 import boxes from '../constants/boxes';
 import { Box } from '../models/box.model';
+import { currentTime } from '../models/currentTime.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,14 @@ export class TimeService {
   initialMinutes = this.initialTime.getMinutes();
   initialSeconds = this.initialTime.getSeconds();
   boxes = new BehaviorSubject(boxes);
+  currentTime = new currentTime();
+
   constructor() { }
 
   updateTime(hours = this.initialHours, minutes = this.initialMinutes, seconds = this.initialSeconds) {
     const newCurrentTime = this.formatTime(hours, minutes, seconds)
     this.boxes.next(this.updateBoxes(this.boxes.getValue(), newCurrentTime.hours, newCurrentTime.minutes));
-    return {
-      currentTime: newCurrentTime
-    }
+    this.currentTime = newCurrentTime;
   }
 
    
