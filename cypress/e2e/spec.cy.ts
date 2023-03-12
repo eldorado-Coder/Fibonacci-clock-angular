@@ -43,7 +43,6 @@ describe('e2e test', () => {
         expect(localStorage.getItem('minutes')).to.eq(minutes)
       })
     })
-
   })
   
 
