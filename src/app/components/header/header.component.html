@@ -3,12 +3,12 @@
         <label for="hours">
             Hours:
         </label>
-        <input id="hours" name="hours" type="text" formControlName="hours" (ngModelChange)="timeService.updateTime(timeService.currentTime.hours, timeService.currentTime.minutes)" [(ngModel)]="timeService.currentTime.hours">
+        <input id="hours" min="0" max="12" name="hours" type="number" formControlName="hours" (ngModelChange)="timeService.updateTime(timeService.currentTime.hours, timeService.currentTime.minutes)" [(ngModel)]="timeService.currentTime.hours">
         
         <label for="minutes">
             Minutes:
         </label>
-        <input id="minutes" name="minutes" type="text" formControlName="minutes"  (ngModelChange)="timeService.updateTime(timeService.currentTime.hours, timeService.currentTime.minutes)"  [(ngModel)]="timeService.currentTime.minutes">
+        <input id="minutes" min="0" max="59" name="minutes" type="number" formControlName="minutes"  (ngModelChange)="timeService.updateTime(timeService.currentTime.hours, timeService.currentTime.minutes)"  [(ngModel)]="timeService.currentTime.minutes">
     </form>
     <div>
         <a id="previous" class="previous" (click)="onPrevious()">&laquo; Previous</a>

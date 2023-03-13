@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TimeService } from 'src/app/services/time.service';
-
+import { pairwise } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -18,6 +18,16 @@ export class HeaderComponent implements OnInit {
       hours: ['', Validators.compose([Validators.min(0), Validators.max(24)])],
       minutes: ['', Validators.compose([Validators.min(0), Validators.max(59)])],
     });
+    this.currentTimeForm.get("hours")?.valueChanges.pipe(pairwise()).subscribe(([prev, next])  => {
+      if (next < 0 || typeof next === "object" || next > 11 || next.toString().indexOf('.') > 0) {
+        this.currentTimeForm.get("hours")?.setValue(prev);
+      } 
+    })
+    this.currentTimeForm.get("minutes")?.valueChanges.pipe(pairwise()).subscribe(([prev, next])  => {
+      if (next < 0 || typeof next === "object" || next > 60 || next.toString().indexOf('.') > 0) {
+        this.currentTimeForm.get("minutes")?.setValue(prev);
+      } 
+    })
   }
 
   onPrevious() {
