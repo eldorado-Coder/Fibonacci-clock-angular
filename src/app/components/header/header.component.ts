@@ -19,12 +19,12 @@ export class HeaderComponent implements OnInit {
       minutes: ['', Validators.compose([Validators.min(0), Validators.max(59)])],
     });
     this.currentTimeForm.get("hours")?.valueChanges.pipe(pairwise()).subscribe(([prev, next])  => {
-      if (next < 0 || typeof next === "object" || next > 11 || next.toString().indexOf('.') > 0) {
+      if (next < 0 || next > 11 || next.toString().indexOf('.') > 0 || next.toString().indexOf('-') > 0) {
         this.currentTimeForm.get("hours")?.setValue(prev);
       } 
     })
     this.currentTimeForm.get("minutes")?.valueChanges.pipe(pairwise()).subscribe(([prev, next])  => {
-      if (next < 0 || typeof next === "object" || next > 60 || next.toString().indexOf('.') > 0) {
+      if (next < 0 || next > 60 || next.toString().indexOf('.') > 0 || next.toString().indexOf('-') > 0) {
         this.currentTimeForm.get("minutes")?.setValue(prev);
       } 
     })
